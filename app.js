@@ -99,7 +99,7 @@ function determinateWinner(hildebrandoChoice, taxiDriverChoice) {
     (hildebrandoChoice === 'piedra' && taxiDriverChoice === 'papel') ||
     (hildebrandoChoice === 'tijera' && taxiDriverChoice === 'piedra')
   ) {
-    return 'pasajero';
+    return 'Hildebrando';
   }
   return 'taxista';
 }
@@ -108,11 +108,11 @@ function rockPaperScissors(hildebrandoChoice) {
   const taxiDriverChoice = runTaxiDriverChoice();
   const result = determinateWinner(hildebrandoChoice, taxiDriverChoice);
 
-  if (result === 'pasajero') {
-    console.log('El pasajero gana. Se le descontará el dinero de la deuda.');
-    budget -= amountToPay;
+  if (result === 'Hildebrando') {
+    console.log('Ganaste. No se te descontará el dinero del transporte.');
   } else if (result === 'taxista') {
-    console.log('El taxista gana. No se le descontará nada al pasajero.');
+    console.log('El taxista gana. se te descontará el dinero del transporte');
+    budget -= amountToPay;
   } else {
     console.log('Empate. No pasa nada.');
   }
@@ -125,10 +125,10 @@ rockPaperScissors(prompt('piedra, papel o tijera?').toLowerCase());
 let daysInHotel = 0;
 let isAlive = true;
 
-for (let day = 1; day <= 4; dia++) {
-  console.log(`Día ${dia} de Hildebrando en Macondo`);
+for (let day = 1; day <= 4; day++) {
+  console.log(`Día ${day} de Hildebrando en Macondo`);
   let activity = prompt(
-    '¿Qué actividad deseas realizar hoy? \n1. Amarillo \n2. Verde \n3. Roja  \n4. Azul)'
+    '¿Qué actividad deseas realizar hoy? \n1. Amarillo \n2. Verde \n3. Roja  \n4. Azul'
   );
 
   if (activity === '1') {
@@ -159,7 +159,7 @@ for (let day = 1; day <= 4; dia++) {
       );
       break;
     }
-  } else if (actividad === '4') {
+  } else if (activity === '4') {
     let hotelActivity = prompt(
       '¿Qué actividad deseas hacer dentro del hotel? \n1. bingo \n2. bailar \n3. casino'
     );
@@ -180,6 +180,6 @@ for (let day = 1; day <= 4; dia++) {
 
 spentMoney = 2500000 - budget;
 
-console.log(`Hildebrando estuvo ${diasEnHotel} días en Macondo.`);
-console.log(`${isAlive ? 'Pudo regresar' : 'Murió'} a casa.`);
+console.log(`Hildebrando estuvo ${daysInHotel} días en Macondo.`);
+console.log(`${isAlive ? 'Pudo regresar' : 'Murió'}`);
 console.log(`Gastó ${spentMoney} pesos.`);
