@@ -124,6 +124,7 @@ function determinateWinner(hildebrandoChoice, taxiDriverChoice) {
   return 'Hildebrando';
 }
 
+alert('Juegas piedra, papel o tijera con el taxista');
 function rockPaperScissors() {
   const result = determinateWinner(hildebrandoChoice, taxiDriverChoice);
 
@@ -166,6 +167,8 @@ for (let day = 1; day <= 4; day++) {
       isAlive = false;
       alert('Mueres por demasiado cloro en la piscina.');
       break;
+    } else {
+      alert('Disfrutas de las demas amenidades del hotel.');
     }
   } else if (clothesColor === '2') {
     let goForWalk = confirm('¿Quieres hacer la caminata completa?');
@@ -230,8 +233,10 @@ for (let day = 1; day <= 4; day++) {
   daysInHotel++;
 }
 
-spentMoney = 2500000 - budget;
+const spentMoney = 2500000 - budget;
 
-alert(`Hildebrando estuvo ${daysInHotel} días en Macondo.`);
-alert(`Hildebrando ${isAlive ? 'Pudo regresar' : 'Murió'}`);
-alert(`Gastó ${spentMoney} pesos.`);
+alert(
+  `Hildebrando estuvo ${daysInHotel} días en Macondo. \nHildebrando ${
+    isAlive ? 'Pudo regresar a salvo' : 'Murió'
+  }. \nGastó ${spentMoney} pesos.`
+);
