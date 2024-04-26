@@ -4,19 +4,30 @@
 
 let budget = 2500000;
 
-let mealChoice = prompt(
-  'Que te gustaria comer? \n1. Almojábana con gaseosa \n2. Subway con gaseosa \n3. Nada'
-);
+function getOption() {
+  while (true) {
+    const mealChoice = prompt(
+      'Que te gustaria comer? \n1. Almojábana con gaseosa \n2. Subway con gaseosa \n3. Nada'
+    );
+    if (!isNaN(mealChoice) && mealChoice > 0 && mealChoice < 4) {
+      return mealChoice;
+    } else {
+      alert('Por favor ingresa una opcion valida.');
+    }
+  }
+}
+
+const mealChoice = getOption();
 
 if (mealChoice === '3') {
   alert('Te tocara comprar algo en Medellin');
 } else if (mealChoice === '1') {
   alert(
-    'Esta eleccion de comida puede caerte mal porque llevas mucho en el stand'
+    'Esta eleccion de comida te cae mal porque llevas mucho tiempo en el stand'
   );
   budget -= 15000;
 } else if (mealChoice === '2') {
-  alert('¡Quedaras lleno y bien!');
+  alert('¡Quedas lleno y bien!');
   budget -= 23000;
 }
 // Caso # 2
@@ -46,11 +57,15 @@ let minReductionFactor = Math.min(
   reductionFactorWidth
 );
 
-userSuitcaseDimensions.height *= minReductionFactor;
-userSuitcaseDimensions.length *= minReductionFactor;
-userSuitcaseDimensions.width *= minReductionFactor;
+const newUserSuitcaseDimensions = {
+  height: userSuitcaseDimensions.height * minReductionFactor,
+  length: Math.floor(userSuitcaseDimensions.length * minReductionFactor),
+  width: Math.floor(userSuitcaseDimensions.width * minReductionFactor),
+};
 
-console.log(userSuitcaseDimensions);
+console.log(
+  `La maleta debe ajustarse a las medidas de: \nAlto: ${newUserSuitcaseDimensions.height}cm \nAncho: ${newUserSuitcaseDimensions.width}cm \nLargo: ${newUserSuitcaseDimensions.length}cm `
+);
 
 // Caso # 3
 
@@ -71,7 +86,9 @@ const password = binarySegments
   .map(decimalToCharacter)
   .join('');
 
-console.log(password);
+console.log(
+  `La clave del WiFi es ${password} y se te descontaran ${valueWifiHour} pesos por hora.`
+);
 
 budget -= valueWifiHour;
 
@@ -85,10 +102,13 @@ console.log(statementWhitI);
 
 const amountToPay = 300000;
 
-function runTaxiDriverChoice() {
+function getChoice() {
   const options = ['papel', 'piedra', 'tijera'];
   return options[Math.floor(Math.random() * options.length)];
 }
+
+let hildebrandoChoice = getChoice();
+let taxiDriverChoice = getChoice();
 
 function determinateWinner(hildebrandoChoice, taxiDriverChoice) {
   if (hildebrandoChoice === taxiDriverChoice) {
@@ -99,13 +119,12 @@ function determinateWinner(hildebrandoChoice, taxiDriverChoice) {
     (hildebrandoChoice === 'piedra' && taxiDriverChoice === 'papel') ||
     (hildebrandoChoice === 'tijera' && taxiDriverChoice === 'piedra')
   ) {
-    return 'Hildebrando';
+    return 'taxista';
   }
-  return 'taxista';
+  return 'Hildebrando';
 }
 
-function rockPaperScissors(hildebrandoChoice) {
-  const taxiDriverChoice = runTaxiDriverChoice();
+function rockPaperScissors() {
   const result = determinateWinner(hildebrandoChoice, taxiDriverChoice);
 
   if (result === 'Hildebrando') {
@@ -117,8 +136,7 @@ function rockPaperScissors(hildebrandoChoice) {
     console.log('Empate. No pasa nada.');
   }
 }
-
-rockPaperScissors(prompt('piedra, papel o tijera?').toLowerCase());
+rockPaperScissors();
 
 // Caso # 6
 
@@ -127,51 +145,85 @@ let isAlive = true;
 
 for (let day = 1; day <= 4; day++) {
   console.log(`Día ${day} de Hildebrando en Macondo`);
-  let activity = prompt(
-    '¿Qué actividad deseas realizar hoy? \n1. Amarillo \n2. Verde \n3. Roja  \n4. Azul'
-  );
 
-  if (activity === '1') {
-    let goToPool = confirm('¿Quieres ir a la piscina?');
+  function getClothesColor() {
+    while (true) {
+      const clothesColor = prompt(
+        '¿Con que color deseas vestirte en el hotel? \n1. Amarillo \n2. Verde \n3. Roja  \n4. Azul'
+      );
+      if (!isNaN(clothesColor) && clothesColor > 0 && clothesColor < 5) {
+        return clothesColor;
+      } else {
+        alert('Por favor selecciona un color valido.');
+      }
+    }
+  }
+  const clothesColor = getClothesColor();
+
+  if (clothesColor === '1') {
+    let goToPool = confirm('¿Quieres entrara la piscina?');
     if (goToPool) {
       isAlive = false;
-      console.log('Murió por demasiado cloro en la piscina.');
+      console.log('Mueres por demasiado cloro en la piscina.');
       break;
     }
-  } else if (activity === '2') {
-    let goForWalk = confirm('¿Quieres ir a la caminata?');
+  } else if (clothesColor === '2') {
+    let goForWalk = confirm('¿Quieres hacer la caminata completa?');
     if (goForWalk) {
-      console.log('Irás a una hermosa cascada y tomarás fotos.');
+      console.log('Llegas a una hermosa cascada y tomas muchas fotos.');
     } else {
-      console.log('Llegarás a cierto punto, te devolverás solo y te perderas.');
+      console.log(
+        'Llegas hasta cierto punto, te devuelves solo y te pierdes toda la noche.'
+      );
     }
-  } else if (activity === '3') {
-    let beachActivity = prompt(
-      '¿Qué actividad deseas hacer en la playa? \n1. Voleibol \n2. Montar moto \n3. Tomar cocteles'
-    );
+  } else if (clothesColor === '3') {
+    function getBeachActivity() {
+      while (true) {
+        const beachActivity = prompt(
+          '¿Qué actividad deseas hacer en la playa? \n1. Voleibol \n2. Monta moto \n3. Tomar cocteles'
+        );
+        if (!isNaN(beachActivity) && beachActivity > 0 && beachActivity < 4) {
+          return beachActivity;
+        } else {
+          alert('Por favor selecciona una actividad valida.');
+        }
+      }
+    }
+    const beachActivity = getBeachActivity();
+
     if (beachActivity === '1') {
-      console.log('Voleibol, juega y la pasa genial.');
+      console.log('Juegas Voleibol y la pasas genial.');
     } else if (beachActivity === '2') {
-      console.log('Monta moto.');
+      console.log('Montas moto y te diviertes mucho.');
     } else if (beachActivity === '3') {
       console.log(
-        'te pones a tomar cocteles mientras descansas, de pronto sientes un fuerte dolor de cabeza y empiezas a perder la visión. Era chirrinchi adulterado, te tienes que devolver de emergencia.'
+        'Te pones a tomar cocteles mientras descansas, de pronto sientes un fuerte dolor de cabeza y empiezas a perder la visión. Era chirrinchi adulterado, te tienes que devolver a tu ciudad de emergencia.'
       );
       break;
     }
-  } else if (activity === '4') {
-    let hotelActivity = prompt(
-      '¿Qué actividad deseas hacer dentro del hotel? \n1. bingo \n2. bailar \n3. casino'
-    );
+  } else if (clothesColor === '4') {
+    function getHotelActivity() {
+      while (true) {
+        const hotelActivity = prompt(
+          '¿Qué actividad deseas hacer en el hotel? \n1. Bingo \n2. Bailar \n3. Casino'
+        );
+        if (!isNaN(hotelActivity) && hotelActivity > 0 && hotelActivity < 4) {
+          return hotelActivity;
+        } else {
+          alert('Por favor selecciona una actividad valida.');
+        }
+      }
+    }
+    const hotelActivity = getHotelActivity();
+
     if (hotelActivity === '1') {
-      console.log('Bingo, se lo gana y aumenta su dinero.');
+      console.log('Te ganas 500.000 pesos en el Bingo.');
       budget += 500000;
     } else if (hotelActivity === '2') {
-      console.log('Bailar, y la pasa muy bien.');
+      console.log('Bailas y la pasa muy bien.');
     } else if (hotelActivity === '3') {
-      console.log('Casino y apuesta, y solo se queda con pasaje de regreso.');
+      console.log('Apuestas y solo te quedas con el pasaje de regreso.');
       budget -= 2000000;
-      break;
     }
   }
 
@@ -181,5 +233,5 @@ for (let day = 1; day <= 4; day++) {
 spentMoney = 2500000 - budget;
 
 console.log(`Hildebrando estuvo ${daysInHotel} días en Macondo.`);
-console.log(`${isAlive ? 'Pudo regresar' : 'Murió'}`);
+console.log(`Hildebrando ${isAlive ? 'Pudo regresar' : 'Murió'}`);
 console.log(`Gastó ${spentMoney} pesos.`);
