@@ -63,7 +63,7 @@ const newUserSuitcaseDimensions = {
   width: Math.floor(userSuitcaseDimensions.width * minReductionFactor),
 };
 
-console.log(
+alert(
   `La maleta debe ajustarse a las medidas de: \nAlto: ${newUserSuitcaseDimensions.height}cm \nAncho: ${newUserSuitcaseDimensions.width}cm \nLargo: ${newUserSuitcaseDimensions.length}cm `
 );
 
@@ -86,7 +86,7 @@ const password = binarySegments
   .map(decimalToCharacter)
   .join('');
 
-console.log(
+alert(
   `La clave del WiFi es ${password} y se te descontaran ${valueWifiHour} pesos por hora.`
 );
 
@@ -96,7 +96,7 @@ budget -= valueWifiHour;
 
 const statement = 'Taxi me puede llevar al hotel mariposas amarillas';
 const statementWhitI = statement.replaceAll(/[aeou]/gi, 'i');
-console.log(statementWhitI);
+alert(statementWhitI);
 
 // Caso # 5
 
@@ -128,12 +128,12 @@ function rockPaperScissors() {
   const result = determinateWinner(hildebrandoChoice, taxiDriverChoice);
 
   if (result === 'Hildebrando') {
-    console.log('Ganaste. No se te descontará el dinero del transporte.');
+    alert('Ganaste. No se te descontará el dinero del transporte.');
   } else if (result === 'taxista') {
-    console.log('El taxista gana. se te descontará el dinero del transporte');
+    alert('El taxista gana. se te descontará el dinero del transporte');
     budget -= amountToPay;
   } else {
-    console.log('Empate. No pasa nada.');
+    alert('Empate. No pasa nada.');
   }
 }
 rockPaperScissors();
@@ -144,7 +144,7 @@ let daysInHotel = 0;
 let isAlive = true;
 
 for (let day = 1; day <= 4; day++) {
-  console.log(`Día ${day} de Hildebrando en Macondo`);
+  alert(`Día ${day} de Hildebrando en Macondo`);
 
   function getClothesColor() {
     while (true) {
@@ -164,15 +164,15 @@ for (let day = 1; day <= 4; day++) {
     let goToPool = confirm('¿Quieres entrara la piscina?');
     if (goToPool) {
       isAlive = false;
-      console.log('Mueres por demasiado cloro en la piscina.');
+      alert('Mueres por demasiado cloro en la piscina.');
       break;
     }
   } else if (clothesColor === '2') {
     let goForWalk = confirm('¿Quieres hacer la caminata completa?');
     if (goForWalk) {
-      console.log('Llegas a una hermosa cascada y tomas muchas fotos.');
+      alert('Llegas a una hermosa cascada y tomas muchas fotos.');
     } else {
-      console.log(
+      alert(
         'Llegas hasta cierto punto, te devuelves solo y te pierdes toda la noche.'
       );
     }
@@ -192,11 +192,11 @@ for (let day = 1; day <= 4; day++) {
     const beachActivity = getBeachActivity();
 
     if (beachActivity === '1') {
-      console.log('Juegas Voleibol y la pasas genial.');
+      alert('Juegas Voleibol y la pasas genial.');
     } else if (beachActivity === '2') {
-      console.log('Montas moto y te diviertes mucho.');
+      alert('Montas moto y te diviertes mucho.');
     } else if (beachActivity === '3') {
-      console.log(
+      alert(
         'Te pones a tomar cocteles mientras descansas, de pronto sientes un fuerte dolor de cabeza y empiezas a perder la visión. Era chirrinchi adulterado, te tienes que devolver a tu ciudad de emergencia.'
       );
       break;
@@ -217,12 +217,12 @@ for (let day = 1; day <= 4; day++) {
     const hotelActivity = getHotelActivity();
 
     if (hotelActivity === '1') {
-      console.log('Te ganas 500.000 pesos en el Bingo.');
+      alert('Te ganas 500.000 pesos en el Bingo.');
       budget += 500000;
     } else if (hotelActivity === '2') {
-      console.log('Bailas y la pasa muy bien.');
+      alert('Bailas y la pasa muy bien.');
     } else if (hotelActivity === '3') {
-      console.log('Apuestas y solo te quedas con el pasaje de regreso.');
+      alert('Apuestas y solo te quedas con el pasaje de regreso.');
       budget -= 2000000;
     }
   }
@@ -232,6 +232,6 @@ for (let day = 1; day <= 4; day++) {
 
 spentMoney = 2500000 - budget;
 
-console.log(`Hildebrando estuvo ${daysInHotel} días en Macondo.`);
-console.log(`Hildebrando ${isAlive ? 'Pudo regresar' : 'Murió'}`);
-console.log(`Gastó ${spentMoney} pesos.`);
+alert(`Hildebrando estuvo ${daysInHotel} días en Macondo.`);
+alert(`Hildebrando ${isAlive ? 'Pudo regresar' : 'Murió'}`);
+alert(`Gastó ${spentMoney} pesos.`);
